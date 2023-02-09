@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{%  load static %}
+
+
+{% block titulo %} Recursos {% endblock %}
+
+{% block contenido  %}
+
+
+
+<div class="card">
+    {% if user.is_superuser %}
+    <div class="card-header">
+        <a name="" id="" class="btn btn-dark" href="{% url 'crear' %}" role="button">Agregar Recurso</a>    
+    </div>
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">Recursos</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    {% if user.is_superuser %}
+                    <th>ID</th>
+                    {% endif %}
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>url</th>
+                    {% if user.is_superuser %}
+                    <th>Acciones</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for recurso in recursos %}
+                <tr>
+                    {% if user.is_superuser %}
+                    <td>{{ recurso.id }}</td>
+                    {% endif %}
+                    <td>{{ recurso.titulo }}</td>
+                    <td>{{ recurso.descripcion }}</td>
+                    <td><a href="{{ recurso.url }}"target="_blank">{{ recurso.url }}</a></td>
+
+                    {% if user.is_superuser %}
+                    <td> <a name="" id="" class="btn btn-success" href="{% url 'editar' recurso.id %}" role="button">Editar</a> <br></br> <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' recurso.id %}" role="button">Borrar</a></td>
+                    {% endif %}
+                         
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>  
+</div>
+
+
+
+
+{% endblock %}

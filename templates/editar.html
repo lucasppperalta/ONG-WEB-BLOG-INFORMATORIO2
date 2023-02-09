@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{%  load static %}
+
+{% block titulo %}Editar recurso{% endblock %}
+
+
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        Editar información del recurso
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del recurso</h4>
+
+         {% include 'formulario_recursos.html' %} 
+
+    </div>
+</div>
+
+{% endblock %}

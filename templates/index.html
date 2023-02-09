@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block titulo %}Fundación Pueblo{% endblock %}
+
+{% block contenido %}
+
+<!--SLIDER DE IMÁGENES-->
+<div class="container-fluid my-2">
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner" id="carousel-style">
+
+      <div class="carousel-item active" data-bc-interval="1000">
+        <img src="/static/img/fondo.jpg" class="d-block w-100" alt="foto1" style="border: 8px solid #0d4b92b2;">
+        <div class="carousel-caption d-none d-md-block">
+          <p class="h1 bg text-white" style="background-color: #439a97c5;">Fundación Pueblo</p>
+          <p class="h2 bg text-white" style="background-color: #0d4b92c5;">"Siempre al servicio de las personas de Barranqueras"</p>
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<!--CARDS INFORMATIVAS-->
+<div class="container-fluid my-2">
+
+  <div class="row g-2">
+
+    <div class="col-3">
+
+      <div class="card" style="border: 5px solid #A0E4CB;">
+        <img src="/static/img/img2.jpg" class="card-img-top" alt="..." style="height: 350px; width: 100%;">
+        <div class="card-body" style="height: 150px; background-color: whitesmoke; overflow-x: hidden;">
+          <h5 class="card-title" style="color: #439A97;">Cortes de pelo gratis</h5>
+          <p class="card-text texto-justificado">Te esperamos todos los domingo a las 18:30 hs para una nueva EXPOPUEBLO
+            !
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-3">
+
+      <div class="card" style="border: 5px solid #A0E4CB;">
+        <img src="/static/img/img1.jpg" class="card-img-top" alt="..." style="height: 350px; width: 100%;">
+        <div class="card-body" style="height: 150px; background-color: whitesmoke; overflow-x: hidden;">
+          <h5 class="card-title" style="color: #439A97;">Terminá la secundaria con nosotros</h5>
+          <p class="card-text texto-justificado">Veni a la UEGP N172 "Gob. Deolindo Felipe Bittel" y termina tu
+            secundario con nosotros: Ministerio de Educación del Chaco</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-3">
+
+      <div class="card" style="border: 5px solid #A0E4CB;">
+        <img src="/static/img/img4.jpg" class="card-img-top" alt="..." style="height: 350px; width: 100%;">
+        <div class="card-body" style="height: 150px; background-color: whitesmoke; overflow-x: hidden;">
+          <h5 class="card-title" style="color: #439A97;">EXPO PUEBLO 2022
+          </h5>
+          <p class="card-text texto-justificado">Todos los domingo de cada semana celebramos la "Expo Pueblo" donde hay
+            muchas actividades tales como: cortes gratuitos de cabello, MasterClass para Barberos,Feria de
+            emprendimientos, oficios y profesiones, DJs en vivo, Shows en vivo. Colecta Solidaria, recibimos alimentos
+            no perecederos, abrigos y calzados.
+            Veni a pasar una tarde con nosotros. Trae tu silleta y mates.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-3">
+
+      <div class="card" style="border: 5px solid #A0E4CB;">
+        <img src="./static/img/flayer3.jpg" class="card-img-top" alt="..." style="height: 350px; width: 100%;">
+        <div class="card-body" style="height: 150px; background-color: whitesmoke; overflow-x: hidden;">
+          <h5 class="card-title" style="color: #439A97;">Gas Social</h5>
+          <p class="card-text texto-justificado"> Antencios vecin@s cronograma de gas social</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock contenido %}

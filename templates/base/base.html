@@ -1,0 +1,164 @@
+{% load static %}
+
+
+<!doctype html>
+
+<html lang="es">
+
+<head>
+  <title>{% block titulo %}Fundación Pueblo{% endblock %}</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Estilos Propios -->
+  <link rel="stylesheet" href="./static/css/main.css">
+  <link rel="shortcut icon" type="image/jpg" href="/static/img/Home.png">
+  <!--  Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+  <!--Cargamos el Calendario-->
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.js'></script>
+
+  <!-- Bootstrap CSS v5.2.0-beta1 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-lg" style="background-color: #085e5baf;">
+    <a href="{% url 'home' %}" style="text-decoration: none;">
+      <img src="{% static 'img\Home.png'%}" alt="logo">
+      <span class="text fs-5 fw-bold" style="color: rgb(255, 255, 255);">Fundación Pueblo</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link link-light" aria-current="page" href="{% url 'quienes-somos-puestos' %}">¿QUIENES SOMOS?</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light" aria-current="page" href="{% url 'recursos' %}">¿RECURSOS?</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light" aria-current="page" href="{% url 'noticias:listar' %}">NOTICIAS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-light" aria-current="page" href="{% url 'eventos:calendario-dinamico' %}">EVENTOS</a>
+        </li>
+      </ul>
+
+      {% if user.is_authenticated %}
+
+      {% if user.is_superuser %}
+
+      <form>
+
+        <a href="/admin"><span class="text-light"> Usuario: {{ user.username }}</span></a>
+        <a href="{% url 'logout' %}">
+          <button type="button" class="btn btn-outline-light" style="margin: 10px;">Salir</button>
+        </a>
+      </form>
+
+      {% else %}
+
+      <form>
+
+        <span class="text-bg-light">{{ user.username }}</span>
+        <a href="{% url 'logout' %}">
+          <button type="button" class="btn btn-outline-light" style="margin: 10px;">Salir</button>
+        </a>
+      </form>
+
+
+      {% endif %}
+
+
+      {% else %}
+      <form>
+        <a href="{% url 'login' %}">
+          <button type="button" class="btn btn-outline-light" style="margin: 10px;">Ingresar</button>
+        </a>
+      </form>
+      {% endif %}
+    </div>
+  </nav>
+</header>
+
+<body
+  style="display:flex; flex-direction:column; min-height: 100vh; justify-content: space-between; background-image:url('/static/img/5291450.jpg')">
+</body>
+<main>
+
+  {% block contenido %}
+
+  {% endblock contenido %}
+
+</main>
+
+
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+  integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+  integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
+</body>
+
+<!--pie de pagina -->
+<footer class="bg text-white pt-3" style="bottom: 0; width: 100%; background-color: rgba(32, 31, 31, 0.774);">
+
+  <div class="container" style="margin-bottom: 0%;">
+
+    <nav class="row" style="margin-bottom: 0%;">
+
+      <a href="#" class="col-3 text-reset text-uppercase d-flex align-items-center">
+        Fundación Pueblo
+      </a>
+
+      <ul class="col-3 list-unstyled align-items-center text-center">
+        <li class="font-weight-bold text-uppercase ">Lugar</li>
+        <li><a href="#" target="_blank" class="text-reset"><i class="fa-solid fa-location-dot"></i></a> Av. España 395
+          Barranqueras Chaco Argentina</li>
+      </ul>
+
+      <ul class="col-3 list-unstyled text-center">
+        <li class="font-weight-bold text-uppercase">Teléfono</li>
+        <li><a href="#" target="_blank" class="text-reset"><i class="fa-solid fa-phone"></i></a> 0117849475</li>
+      </ul>
+
+      <ul class="col-3 list-unstyled">
+        <li class="font-weight-bold text-center">SEGUINOS EN NUESTRAS REDES</li>
+        <br>
+        <li class="d-flex justify-content-around">
+          <a href="https://www.instagram.com/fundacion.pueblo/" target="_blank" class="text-reset"><i
+              class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/fundacion.pueblo/" target="_blank" class="text-reset"><i
+              class="fa-brands fa-facebook"></i></a>
+        </li>
+      </ul>
+
+      <p class="text-center">&copy;Todos los derechos reservados</p>
+
+    </nav>
+
+  </div>
+
+</footer>
+
+</html>

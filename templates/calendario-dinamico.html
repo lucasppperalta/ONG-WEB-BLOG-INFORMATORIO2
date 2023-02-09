@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %} 
+  
+{% block titulo %}Fundacion Pueblo{% endblock %}
+  
+{% block contenido %}
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+
+      themeSystem: 'bootstrap5',
+      headerToolbar: { start: 'prev', center:'title', end: 'next'},
+      views: {
+        dayGridMonth: {titleFormat: { year: 'numeric', month: 'short', day: 'numeric' }},titleRangeSeparator: {
+          hour: 'numeric',
+          minute: '2-digit',
+          meridiem: false
+        }},
+
+      initialView: 'dayGridMonth',
+
+      timeZone: 'America/Buenos_Aires',
+
+      events: [
+        {% for eventos in object_list %}
+          {
+              title: "EVENTO",
+              start: '{{eventos.fecha_inicio_evento | date:"Y-m-d"}}T{{eventos.hora_evento}}Z',
+              end: '{{eventos.fecha_fin_evento | date:"Y-m-d"}}',
+              display: 'list-item',
+              color: 'green',
+              selectable: true,
+              url: '{% url "eventos:evento-especifico" eventos.id %}'
+            
+          },
+        {% endfor %}
+      ],
+      
+        
+    });
+    
+    calendar.render();
+    calendar.setOption('locale','es');
+  });
+
+</script>
+
+<div class="container-fluid my-3 w-75">
+  <h2 class="text-center" style="margin-top: 30px;">Calendario Fundación Pueblo</h2>
+
+  <div class="my-2 d-flex flex-row-reverse">
+    <a href="{% url 'eventos:detalle-evento' %}"><button class="w-10 btn btn-sm btn-primary" style="margin:10px;">Ver lista de eventos</button></a>
+  </div>
+
+  <div id='calendar' class='justify-content-center' style='padding: 10px; background-color:white; border: 1px solid rgb(13, 110, 253); border-radius: 0.375rem; display: flex;'></div>
+</div>
+      
+{% endblock%}
+
+{% block otro_bloque %}
+  
+{% endblock otro_bloque %}

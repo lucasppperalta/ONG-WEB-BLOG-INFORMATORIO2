@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block titulo %}NOTICIAS{% endblock titulo %}
+
+
+{% block contenido %}
+<h1>ACA VOY A DETALLAR UNA NOTICIA</h1>
+
+<div class="card mb-3">
+	<div class="card-body" style="text-align: center;">
+		<h5 class="card-title">{{noticia.titulo}}</h5>
+	</div>
+	<img src="{{noticia.imagen.url}}" class="card-img-top" alt="" width="90%" height="90%">
+	<div class="card-body">
+		<p class="card-text" style="text-align: center;">{{noticia.cuerpo}}</p>
+		<p class="card-text" style="text-align: center;">{{noticia.categoria_noticia}}</p>
+		<p class="card-text"><small class="text-muted">{{noticia.fecha}}</small></p>
+	</div>
+	<div class="card-body" style="text-align: center;">
+		<form method="POST" action="{% url 'noticias:comentar' %}">{% csrf_token %}
+			<textarea name="comentario" maxlength="1500"> </textarea>
+			<input type="text" name="id_noticia" value="{{noticia.pk}}" hidden="">
+			<br>
+			<input type="submit" value="GUARDAR">
+		</form>
+	</div>
+	<div class="card-body" style="text-align: center;">
+		<h3 style="color: #0d4b92c5;;">COMENTARIOS</h3>
+		{% for com in comentarios %}
+		{% if user == com.usuario %}
+		<a href="">borrar</a>
+		{% endif %}
+		<strong>FECHA:{{com.fecha}}</strong><br>
+		<strong>USUARIO:{{com.usuario}}</strong><br>
+		<p>{{com.texto}}</p>
+		{% endfor %}
+		<a href="{% url 'noticias:listar' %}" style="color: #439a97c5;">VOLVER</a>
+	</div>
+</div>
+{% endblock contenido %}

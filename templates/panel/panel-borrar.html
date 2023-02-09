@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+
+<center>
+    <div class="my-2" style="width: 50%; background-color: white; padding: 10px; border: 1px solid rgb(13, 110, 253); border-radius: 0.375rem;">
+        <h3 style="margin-bottom:10px" class="text-center">Eliminar evento o categoría</h3>
+
+
+    <form method="post">{% csrf_token %}
+        <h6><p>Está seguro que quiere eliminar: "{{ object }}"?</p></h6>
+        <input class="btn btn-danger" type="submit" value="Eliminar">
+    </form>
+
+</div>
+
+    <a href="{% url 'eventos:panel' %}"><button type="button" class="btn btn-primary">Volver</button></a>
+
+    
+</center>
+
+{% endblock contenido %}

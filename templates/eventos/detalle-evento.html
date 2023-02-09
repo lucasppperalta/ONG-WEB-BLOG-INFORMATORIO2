@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %} 
+{%  load static %}
+
+{% block titulo %}Fundación Pueblo{% endblock %}
+
+{% block contenido %}
+<div class="container-fluid my-3 w-75">
+    <h2 class="text-center" style="margin-top: 30px;">Lista de eventos</h2>
+</div>
+
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'eventos:evento-filtrado' %}"><button class="w-10 btn btn-sm btn-primary "  style="margin:10px;">Filtrar por categorías</button></a>
+    </div>
+
+    <div class="container-fluid text-center my-2">
+        <div class="row g-3">
+            {% for evento in object_list %}
+                <div class="col-4">
+
+                    <div class="card" style="border: 1px solid rgb(13, 110, 253);">                
+                        {% if evento.foto %}
+                            <div class="m-2">
+                                <img src="{{evento.foto.url}}" class="card-img-top" style="width: 100%; height: 400px; object-fit: contain; border-radius: 0.375rem;" alt="..." />
+                            </div>
+                        {% else %}
+                            <div style="margin: auto;">
+                                <img src="{% static 'img/imagen-eventos-default.jpg' %}" class="card-img-top" alt="..." />
+                            </div>                        
+                        {% endif %}
+        
+                        <div class="card-body" style="height: 150px; background-color: whitesmoke; overflow-x: hidden;">
+                            
+                            {% if evento.fecha_inicio_evento == evento.fecha_fin_evento %}
+                                <h5 class="card-title"> El {{evento.fecha_inicio_evento}}</h5>
+
+                            {% else %}
+                                <h5 class="card-title"> Del {{evento.fecha_inicio_evento}} al {{evento.fecha_fin_evento}}</h5>
+                            {% endif %}
+
+                            <h3 class="card-title">{{evento.titulo_evento}}</h3>
+                            <p class="card-text">{{evento.descripcion_evento}}</p>
+                        </div>
+                        
+                        <div style="display: flex; justify-content:space-around;" class="m-1">
+                            <ul class="list-group " style="border-top: none;">
+                                <li class="list-group-item">{{evento.hora_evento}}</li>
+                            </ul>
+                            <ul class="list-group " style="border-top: none;">
+                                <li class="list-group-item">{{evento.modalidad_evento}}</li>
+                            </ul>
+                        </div>
+
+                        {% if user.is_authenticated %}                            
+                            {% if evento.asistencias.all.count >= 1 %}
+                                <div class="card-body" style="background-color: whitesmoke;">
+                                    <span> {{evento.asistencias.all.count}} Asistencias Confirmadas</span>
+
+                                    <form method="POST" action="{% url 'evento:asistencias' pk=evento.pk %}">{% csrf_token %}
+                                        <input type="hidden" name="next" value="{{request.path}}">
+                                        <button type='submit' style="background-color: red;color: white;width: 130px;height: 40px;cursor: pointer;">Me arrepentí</button>
+                                    </form>
+                                </div>
+                            {% else %}
+                                <div class="card-body" style="background-color: whitesmoke;">
+                                    <span> {{evento.asistencias.all.count}} Asistencias Confirmadas</span>
+
+                                    <form method="POST" action="{% url 'evento:asistencias' pk=evento.pk %}">{% csrf_token %}
+                                        <input type="hidden" name="next" value="{{request.path}}">
+                                        <button type='submit' style="background-color: rgb(13, 110, 253);color: white;width: 130px;height: 40px;cursor: pointer;">Voy a Asistir</button>
+                                    </form>
+                                </div>                                
+                            {% endif %}
+                        {% endif %}
+        
+                    </div>
+
+                </div>        
+            {% endfor %}                
+        </div>
+    </div>
+
+    {% include 'include/paginado.html' %}
+
+{% endblock contenido %}

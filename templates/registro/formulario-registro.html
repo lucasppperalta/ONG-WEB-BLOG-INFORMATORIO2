@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block titulo %}Fundación Pueblo{% endblock %}
+
+{% block contenido %}
+<main class="form-signin w-50 m-auto text-center">
+  <div class="card" style="display: flex; width: 70% ; height: auto ;margin: auto; margin-top: 100px; margin-bottom: 100px; border-color: black; background-color: rgb(255, 255, 255);">
+  <form method="POST">{% csrf_token %}
+    <h1 class="mb-3 fw-normal" style="margin-top:20px;">Regístrate</h1>
+    {% include 'include/error_forms.html' %}
+
+<!-- {% include 'include/forms.html' %}  --> 
+    
+
+
+      <div class="form-floating mb-3" style="width: 50%; margin:auto; height: 50px;">		
+        <input type="text" class="form-control" id="floatingInput" placeholder="Nombre Usuario" name="username">		
+        <label for="floatingInput">Usuario</label>
+      </div>
+
+      <div class="form-floating mb-3" style="width: 50%; margin:auto; height: 50px;">		
+        <input type="email" class="form-control" id="floatingemail" placeholder="Mail" name="email">		
+        <label for="floatingemail">Mail</label>		
+      </div>
+    
+      <div class="form-floating mb-3" style="width: 50%; margin:auto; height: 50px;">		
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" name="password1">		
+        <label for="floatingPassword">Contraseña</label>		
+      </div>
+
+      <div class="form-floating mb-3" style="width: 50%; margin:auto; height: 50px;">		
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" name="password2">		
+        <label for="floatingPassword">Reingrese contraseña</label>		
+      </div>  
+
+
+
+
+
+    <button class="w-25 btn btn-sm btn-primary" type="submit" style="margin:10px;">Crear</button>
+  
+  </form> 
+</div>
+{% endblock contenido %}

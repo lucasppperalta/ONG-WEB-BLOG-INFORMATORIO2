@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{%  load static %}
+
+{% block titulo %}Fundación Pueblo{% endblock %}
+
+{% block contenido  %}
+
+<div class="form-signin w-50 m-auto text-center">
+
+	<div class="card" style="display: flex; width: 70% ; height: auto ;margin: auto; margin-top: 100px; margin-bottom: 100px; border-color: black; background-color: rgb(255, 255, 255);">
+	
+		<form method="POST">{% csrf_token %}
+		
+			<h1 class="mb-3 fw-normal" style="margin-top:20px;">Iniciar Sesión</h1>
+		
+			<img src="{% static 'img\perfil.png'%}" alt="imagen generica de perfil" style="margin-bottom: 10px;">	
+		
+			{% include 'include/error_forms.html' %}
+
+			<div class="form-floating mb-3" style="width: 50%; margin:auto">		
+				<input type="text" class="form-control" id="floatingInput" placeholder="Nombre Usuario" name="username">		
+				<label for="floatingInput">Usuario</label>
+			</div>
+		
+			<div class="form-floating mb-3" style="width: 50%; margin:auto; height: 50px;">		
+				<input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" name="password">		
+				<label for="floatingPassword">Contraseña</label>		
+			</div>
+
+	
+		
+			<div class="checkbox">		
+				<label>
+					<input type="checkbox" value="remember-me"> Recuerdame
+				</label>		
+			</div>
+
+			<button class="w-25 btn btn-sm btn-primary" type="submit" style="margin:10px;">Iniciar Sesión</button>
+	
+		</form>
+
+		<p> <small>¿No tienes cuenta?</small> </p>		
+		<a href="{% url 'usuario:registro-usuario' %}" style="margin-bottom: 10px;">Regístrate</a>
+	
+	</div>
+
+</div>
+
+{% endblock contenido %}

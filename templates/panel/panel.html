@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+
+{% if user.is_superuser %}
+    <center>
+        <div class="my-2 " style="width: 50%; background-color: white; padding: 10px; border: 1px solid rgb(13, 110, 253); border-radius: 0.375rem;">
+            <h3 class="text-center" style="margin-bottom:10px">Crear categorías y eventos</h3>
+                
+            <h4>Categorías</h4>
+            {% for c in categorias %}
+            
+            
+                <ul class="list-group list-group-horizontal">
+                    <div class="form-signin w-50 m-auto text-center">
+                    <h5>{{c.nombre_categoria}}</h5>
+                    <br>
+                    </div>
+                   
+                    <div class="form-signin w-50 m-auto text-center">
+                    <a href="{% url 'eventos:panel-actualizar-categorias' pk=c.pk %}"><button type="button" class="btn btn-success">Editar</button></a>
+                        
+                        <a href="{% url 'eventos:panel-borrar-categorias' pk=c.pk %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                    </div>
+                </ul>
+        
+                    
+            {% endfor %}
+            <br>
+            
+            <a href="{% url 'eventos:panel-categorias' %}"><button type="button" class="btn btn-primary">Crear nueva categoría</button></a>
+            
+        
+        
+            <br><br><br>
+        
+            <h4>Eventos</h4>
+            {% for e in eventos %}
+            
+                
+                <ul class="list-group list-group-horizontal">
+                    <div class="form-signin w-50 m-auto text-center">
+                    <h5>{{e.titulo_evento}}</h5>
+                    <br>
+                    </div>
+                    
+                    <div class="form-signin w-50 m-auto text-center">
+                        <a href="{% url 'eventos:panel-actualizar-eventos' pk=e.pk %}"><button type="button" class="btn btn-success">Editar</button></a>
+
+                        <a href="{% url 'eventos:panel-borrar-eventos' pk=e.pk %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                    </div>
+                </ul>
+            {% endfor %}
+            <br>
+            <a href="{% url 'eventos:panel-eventos' %}"><button type="button" class="btn btn-primary">Crear nuevo evento</button></a> 
+        </div>
+    </center>
+
+    
+
+{% else %}
+
+<h1>SOLO EL ADMINISTRADOR ACCEDER</h1>
+
+{% endif %}
+
+    
+{% endblock contenido %}
+    

@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block titulo %}Fundación Pueblo{% endblock %}
+
+{% block contenido %}
+
+
+
+<br>
+<div class="container text-center">
+  <div class="card" style="background-image: url('/static/img/pizarron.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%; border: 10px solid rgb(71, 49, 31);">
+    <div class="card-body">
+      <h3 class="card-title" style="font-family: 'Shadows Into Light', cursive; color: white;">¿Quienes somos?</h3>
+      <p class="card-text" style="font-family: 'Caveat', cursive; color: white; font-size: 20px;">
+        Somos una entidad que fue creada en el año 2012
+        y que tiene como objetivo llevar adelante diferentes actividades
+        para la comunidad de Barranqueras.
+      </p>
+    </div>
+    {% for m in misionvision %}
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <div class="card-body">
+            <h3 class="card-title" style="font-family: 'Shadows Into Light', cursive; color: white;">Nuestra Misión</h3>
+            <p class="card-text" style="font-family: 'Caveat', cursive; color: white; font-size: 20px;">{{m.mision}}</p>
+          </div>
+        </div>
+        <div class="col order-5">
+          <div class="card-body">
+            <h3 class="card-title" style="font-family: 'Shadows Into Light', cursive; color: white;">Nuestra Visión</h3>
+            <p class="card-text" style="font-family: 'Caveat', cursive; color: white; font-size: 20px;">{{m.vision}}</p>
+          </div>
+        </div>
+        <div class="col order-1">
+          <div class="card-body">
+            <h3 class="card-title" style="font-family: 'Shadows Into Light', cursive; color: white;">Nuestros Integrantes</h3>
+            {% for p in integrantes %}
+            <p class="card-text" style="font-family: 'Caveat', cursive; color: white; font-size: 20px;">{{p}}</p>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+    <br>
+    {% endblock %}
