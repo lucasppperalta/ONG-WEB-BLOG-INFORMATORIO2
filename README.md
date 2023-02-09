@@ -15,8 +15,8 @@ _Tecnologías utilizadas:_
 
 ## Autores 📝
 
-- 👨‍💻  Gonzalo Villavicencio
-- 🧑‍🎨  Pablo Traffano
+- 👨‍💻  Lucas Peralta  
+- 🧑‍🎨  Maximiliano Sulligoy
 - 👩‍🏫  Marina Braunschweig
 - 🧑🏽‍💻  Cristian Conci
 - 👨‍💼  Matías Suarez
